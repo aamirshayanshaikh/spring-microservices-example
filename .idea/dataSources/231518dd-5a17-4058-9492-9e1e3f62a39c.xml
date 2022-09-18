@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@mongodb">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.20">
+    <root id="1">
+      <ServerVersion>6.0.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="admin"/>
+    <schema id="3" parent="1" name="config"/>
+    <schema id="4" parent="1" name="expense-tracker"/>
+    <schema id="5" parent="1" name="local"/>
+    <schema id="6" parent="1" name="product-service"/>
+    <table id="7" parent="6" name="product"/>
+    <column id="8" parent="7" name="_id">
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="9" parent="7" name="_class">
+      <Position>1</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="10" parent="7" name="description">
+      <Position>2</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="11" parent="7" name="name">
+      <Position>3</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="12" parent="7" name="price">
+      <Position>4</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+  </database-model>
+</dataSource>

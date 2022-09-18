@@ -1,0 +1,190 @@
+Inventory Service , Order Service, Product Service
+A tiny application packaged to deploy independently. It is scalable and provides high performance
+
+What is microservices
+It collection of small autonomous service modeled around business or microservices is an architecture for building high
+performance and highly scalable application. In microservice architecture each service has single business responsibility.
+
+Advantages of microservices
+Mixed Technology Stack — Different languages and technologies can be used to build different services for the same application
+Independent Development — Based on functionality, microservices can be easily developed independently
+Independent Deployment — They can easily be deployed on server independent of other microservices. Just deploy a microservice
+                        in which change is made not need to deploy whole application
+Fault Isolation — Even if one service of the application does not work, the system still continues to function
+Granular Scaling — Individual components can scale as per need, there is no need to scale all components together
+
+
+How Does Microservice Architecture Work?
+A typical Microservice Architecture (MSA) should consist of the following components:
+
+Clients
+Identity Providers
+API Gateway
+Messaging Formats
+Databases
+Static Content
+Management
+Service Discovery
+
+Architecture pic
+https://miro.medium.com/max/3000/1*NIDD3Gz6IHT3uZZ_XP1Sbg.png
+
+1. Clients
+Any device or browser by which request is being sent to perform operation such as search, build and configure
+
+2. Identity Providers
+The requests coming  clients are passed to the identity providers who authenticate and communicate the requests to
+API Gateway. The requests are then communicated to the internal services via a well-defined API Gateway.
+
+3. API Gateway
+Clients don’t call the internal services directly, API Gateway acts as an entry point for the clients to forward
+requests to appropriate microservices. API Gateway is a microservice which is responsible for handling routing of
+microservices. All request from users are first received by this service then routed to appropriate service.
+
+The advantages of using an API gateway include:
+
+All the services can be updated without the clients knowing.
+Services can also use messaging protocols that are not web-friendly.
+The API Gateway can perform cross-cutting functions such as providing security, load balancing, etc.
+After receiving the requests of clients, the internal architecture consists of microservices that
+communicate with each other through messages to handle client requests.
+
+4. Messaging Formats
+There are two types of messages through which they communicate:
+
+Synchronous Messages: In the situation where clients wait for the responses from a service, Microservices usually
+                       tend to use REST (Representational State Transfer) as it relies on a stateless, client-server,
+                       and the HTTP protocol. This protocol is used as it is a distributed environment each and every
+                       functionality is represented with a resource to carry out operations
+Asynchronous Messages: In the situation where clients do not wait for the responses from a service, Microservices
+                        usually tend to use protocols such as AMQP, STOMP, MQTT. These protocols are used in this type
+                        of communication since the nature of messages is defined and these messages have to be
+                        interoperable between implementations.
+The next question that may come to your mind is how do the applications using Microservices handle their data?
+
+5. Data Handling
+Well, each Microservice owns a private database to capture their data and implement the respective business
+functionality. Also, the databases of Microservices are updated through their service API only.
+Refer to the diagram below:
+https://miro.medium.com/max/481/1*7VcFYC8FkvQQ1qS_sb9PGg.png
+
+Representation Of Microservices Handling Data — Microservice Architecture
+The services provided by Microservices are carried forward to any remote service which supports inter-process communication for different technology stacks.
+
+6. Static Content
+After the Microservices communicate within themselves, they deploy the static content to a cloud-based storage
+service that can deliver them directly to the clients via Content Delivery Networks (CDNs).
+
+Apart from the above components, there are some other components appear in a typical Microservices Architecture:
+
+7. Management
+This component is responsible for balancing the services on nodes and identifying failures.
+
+8. Service Discovery
+Acts as a guide to Microservices to find the route of communication between them as it maintains a list of services on which nodes are located.
+
+Now, let’s look into the pros and cons of this architecture to gain a better understanding of when to use this architecture.
+
+
+
+
+Discovery Server or Eureka Server or Service Discovery
+It is a microservice which holds information of all client services. Every microservice has to be registered with
+Discovery Server.
+
+Example must read uber microservice architecture
+
+
+Principles Used to Design Microservice Architecture
+The principles used to design Microservices are as follows:
+
+Independent & Autonomous Services
+Scalability
+Decentralization
+Resilient Services
+Real-Time Load Balancing
+Availability
+Continuous delivery through DevOps Integration
+Seamless API Integration and Continuous Monitoring
+Isolation from Failures
+Auto -Provisioning
+
+Design Patterns of Microservices
+Aggregator
+API Gateway
+Chained or Chain of Responsibility
+Asynchronous Messaging
+Database or Shared Data
+Event Sourcing
+Branch
+Command Query Responsibility Segregator
+Circuit Breaker
+Decomposition
+
+
+Aggregator: In microservices the Aggregator Design Pattern is a service that receives a request, then makes requests of
+multiple services, combines the results and responds to the initiating request.
+
+API Gateway: With the help of the API Gateway design pattern, the API gateways can convert the protocol request from one type to other. Similarly, it can also offload the authentication/authorization responsibility of the microservice.
+So, once the client sends a request, these requests are passed to the API Gateway which acts as an entry point to forward the clients’ requests to the appropriate microservices. Then, with the help of the load balancer, the load of the request is handled and the request is sent to the respective services. Microservices use Service Discovery which acts as a guide to find the route of communication between each of them. Microservices then communicate with each other via a stateless server i.e. either by HTTP Request/Message Bus.
+
+Chained or Chain: Chained or Chain of Responsibility Design Patterns produces a single output which is a combination
+of multiple chained outputs. So, if you have three services lined up in a chain, then, the request from the client is first received by Service A. Then, this service communicates with the next Service B and collects data. Finally, the second service communicates with the third service to generate the consolidated output. All these services use synchronous HTTP request or response for messaging.
+
+Asynchronous Messaging Design Pattern: From the above pattern, it is quite obvious that the client gets blocked or
+has to wait for a long time in synchronous messaging. But, if you do not want the consumer, to wait for a long time,
+then you can opt for the Asynchronous Messaging. In this type of microservices design pattern, all the services can
+communicate with each other, but they do not have to communicate with each other sequentially. So, if you consider
+3 services: Service A, Service B, and Service C. The request from the client can be directly sent to the Service C
+and Service B simultaneously. These requests will be in a queue. Apart from this, the request can also be sent to
+Service A whose response need not have to be sent to the same service through which request has come.
+
+Command Query Responsibility Segregator (CQRS) Design Pattern:Every microservices design has either the database per
+service model or the shared database per service. But, in the
+database per service model, we cannot implement a query as the data access is only limited to one single database. So,
+in such scenario, you can use the CQRS pattern. According to this pattern, the application will be divided into two
+parts: Command and Query. The command part will handle all the requests related to CREATE, UPDATE, DELETE while the
+query part will take care of the materialized views. The materialized views are updated through a sequence of events
+ which are creating using the event source pattern discussed above.
+
+
+
+Circuit Breaker Pattern: As the name suggests, the Circuit Breaker design pattern is used to stop the process of
+request and response if a service is not working. So, for example, let’s say a client is sending a request to retrieve
+data from multiple services. But, due to some issues, one of the services is down. Now, there are mainly two problems
+you will face: first, since the client will not have any knowledge about a particular service being down, the request
+will be continuously sent to that service. The second problem is that the network resources will be exhausted with
+low performance and bad user experience. So, to avoid such problems, you can use the Circuit Breaker Design Pattern.
+With the help of this pattern, the client will invoke a remote service via a proxy. This proxy will basically behave
+as a circuit barrier. So, when the number of failures crosses the threshold number, the circuit breaker trips for a
+particular time period. Then, all the attempts to invoke the remote service will fail in this timeout period. Once
+that time period is finished, the circuit breaker will allow a limited number of tests to pass through and if those
+requests succeed, the circuit breaker resumes back to the normal operation. Else, if there is a failure, then the
+time out period begins again.
+
+Microservice Tools
+https://medium.com/@lihiniabeykoon/kafka-or-rabbitmq-38384a1e51a8
+https://medium.com/adevinta-tech-blog/designing-applications-at-scale-microservices-and-events-part-1-bac2034599b4
+https://medium.com/adevinta-tech-blog/designing-applications-at-scale-part-2-handling-requests-7337ba25ed74
+https://medium.com/accesto/docker-basic-concepts-5b75beab6e62
+https://medium.com/@kmdkhadeer/docker-get-started-9aa7ee662cea
+https://medium.com/@bhuppi/solid-principles-of-software-design-with-java-3299d7f8b019
+https://medium.com/the-programmer/kubernetes-fundamentals-for-absolute-beginners-architecture-components-1f7cda8ea536
+https://medium.com/free-code-camp/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882
+
+Spring TOP 50 Questions
+https://medium.com/edureka/spring-boot-interview-questions-f8267eb341c0
+https://medium.com/@mohd-tanveer/serialization-deserialization-in-detail-with-all-interview-questions-f97a1235c371
+https://medium.com/@jaypatelmh/top-10-java-8-stream-and-lambda-expression-interview-questions-answers-2022-49b9b716d14c
+https://medium.com/edureka/dbms-interview-questions-a63e96d16fcd
+https://medium.com/edureka/schema-in-sql-816c6869073b
+https://medium.com/edureka/microservices-security-b01b8f2a9215
+SQL Basics
+https://medium.com/edureka/sql-basics-4f5660b27fca
+https://medium.com/edureka/sql-joins-db6e76effac1
+https://medium.com/@akashkumar7667757616/normalization-in-sql-37749fbee351
+
+
+Why microservices need to be registered with Discovery Server or Eureka Server ?
+The Need for Service Discovery. A microservice needs to know the location (IP address and port) of every service
+it communicates with. If we don't employ a Service Discovery mechanism, service locations become coupled, leading to a system that's difficult to maintain.
